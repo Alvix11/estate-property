@@ -52,13 +52,13 @@
                         </div>
                     </group>
                     <group class="px-3 mb-4">
-                        <group>
-                            <div class="row">
+                        <group class="px-3">
+                            <div class="row mb-0">
                                 <div class="col-4">
-                                    <label for="post_code" string="Postcode" class="o_form_label fw-bold"/>
+                                    <label for="property_type_id" string="Property Type" class="o_form_label"/>
                                 </div>
-                                <div class="col-5">
-                                    <field name="post_code" nolabel="1"/>
+                                <div class="col-4">
+                                    <field name="property_type_id"/>
                                 </div>
                             </div>
                         </group>
@@ -75,10 +75,10 @@
                         <group>
                             <div class="row">
                                 <div class="col-4">
-                                    <label for="date_availability" string="Date Availability" class="o_form_label fw-bold"/>
+                                    <label for="post_code" string="Postcode" class="o_form_label fw-bold"/>
                                 </div>
                                 <div class="col-5">
-                                    <field name="date_availability" nolabel="1"/>
+                                    <field name="post_code" nolabel="1"/>
                                 </div>
                             </div>
                         </group>
@@ -89,6 +89,16 @@
                                 </div>
                                 <div class="col-5">
                                     <field name="selling_price" nolabel="1"/>
+                                </div>
+                            </div>
+                        </group>
+                        <group>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="date_availability" string="Date Availability" class="o_form_label fw-bold"/>
+                                </div>
+                                <div class="col-5">
+                                    <field name="date_availability" nolabel="1"/>
                                 </div>
                             </div>
                         </group>
@@ -182,16 +192,6 @@
                                     </div>
                                     <div class="col-4">
                                         <field name="state"/>
-                                    </div>
-                                </div>
-                            </group>
-                            <group class="px-3">
-                                <div class="row mb-0">
-                                    <div class="col-2">
-                                        <label for="property_type_id" string="Property Type" class="o_form_label"/>
-                                    </div>
-                                    <div class="col-4">
-                                        <field name="property_type_id"/>
                                     </div>
                                 </div>
                             </group>
