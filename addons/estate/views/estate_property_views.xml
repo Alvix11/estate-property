@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="estate_property_view_search" model="ir.ui.view">
+        <field name="name">estate.property.view.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Search Property">
+                <field name="name" string="Title"/>
+                <field name="post_code"/>
+                <field name="expected_price"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="facades"/>
+                <filter name="state" 
+                        string="Available" 
+                        domain="['|', ('state', '=', 'new'), ('state', '=', 'offer received')]"/>
+                <group expand="1" string="Group By">
+                    <filter name="group_post_code"
+                            string="Postcode"
+                            context="{'group_by': 'post_code'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="estate_property_view_list" model="ir.ui.view">
+        <field name="name">estate.property.list</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <list string="Channel">
+                <field name="name"/>
+                <field name="post_code"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="date_availability"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="estate_property_view_form" model="ir.ui.view">
+        <field name="name">estate.property.form</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form string="Estate Property">
+                <sheet>
+                    <group class="px-3">
+                        <div class="display-5 mb-4 mt-1 col-6">
+                            <field name="name"/>
+                        </div>
+                    </group>
+                    <group class="px-3 mb-4">
+                        <group>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="post_code" string="Postcode" class="o_form_label fw-bold"/>
+                                </div>
+                                <div class="col-5">
+                                    <field name="post_code" nolabel="1"/>
+                                </div>
+                            </div>
+                        </group>
+                        <group>
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="expected_price" string="Expected Price" class="o_form_label fw-bold"/>
+                                </div>
+                                <div class="col-6">
+                                    <field name="expected_price" nolabel="1"/>
+                                </div>
+                            </div>
+                        </group>
+                        <group>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="date_availability" string="Date Availability" class="o_form_label fw-bold"/>
+                                </div>
+                                <div class="col-5">
+                                    <field name="date_availability" nolabel="1"/>
+                                </div>
+                            </div>
+                        </group>
+                        <group>
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="selling_price" string="Selling Price" class="o_form_label fw-bold"/>
+                                </div>
+                                <div class="col-5">
+                                    <field name="selling_price" nolabel="1"/>
+                                </div>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <group class="px-3">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <label for="description" string="Description" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-8">
+                                        <field name="description"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="bedrooms" string="Bedrooms" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="bedrooms"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="living_area" string="Living Area" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="living_area"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="facades" string="Facades" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="facades"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="garage" string="Garage" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="garage"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="garden" string="Garden" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="garden"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="garden_area" string="Garden Area" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="garden_area"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="garden_orientation" string="Garden Orientation" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="garden_orientation"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="state" string="State" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="state"/>
+                                    </div>
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_property_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
