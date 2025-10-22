@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <group class="px-3 mb-4">
-                        <group class="px-3">
+                        <group>
                             <div class="row mb-0">
                                 <div class="col-4">
                                     <label for="property_type_id" string="Property Type" class="o_form_label"/>
@@ -197,6 +197,15 @@
                                     </div>
                                     <div class="col-4">
                                         <field name="state"/>
+                                    </div>
+                                </div>
+                            </group>
+                        </page>
+                        <page string="Offers">
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-auto">
+                                        <field name="offers_ids" widget="one2many"/>
                                     </div>
                                 </div>
                             </group>
