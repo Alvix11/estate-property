@@ -61,3 +61,7 @@ class EstateProperty(models.Model):
         index=True,
         copy=False
     )
+    tags_ids = fields.Many2many(
+        "estate.property.tag",
+        string="Property Tags"
+        )
