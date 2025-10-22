@@ -47,10 +47,15 @@
             <form string="Estate Property">
                 <sheet>
                     <group class="px-3">
-                        <div class="display-5 mb-4 mt-1 col-6">
+                        <div class="display-5 mt-1 col-6">
                             <field name="name"/>
                         </div>
                     </group>
+                    <div class="row px-3 mb-3">
+                        <div class="col-md-6">
+                            <field name="tags_ids" widget="many2many_tags"/>
+                        </div>
+                    </div>
                     <group class="px-3 mb-4">
                         <group class="px-3">
                             <div class="row mb-0">
