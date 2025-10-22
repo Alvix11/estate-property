@@ -95,7 +95,7 @@
                         <group>
                             <div class="row">
                                 <div class="col-4">
-                                    <label for="date_availability" string="Date Availability" class="o_form_label fw-bold"/>
+                                    <label for="date_availability" string="Available From" class="o_form_label fw-bold"/>
                                 </div>
                                 <div class="col-5">
                                     <field name="date_availability" nolabel="1"/>
@@ -192,6 +192,28 @@
                                     </div>
                                     <div class="col-4">
                                         <field name="state"/>
+                                    </div>
+                                </div>
+                            </group>
+                        </page>
+                        <page string="Other Info">
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="user_id" string="Salesman" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="user_id"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="buyer_id" string="Buyer" class="o_form_label"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="buyer_id"/>
                                     </div>
                                 </div>
                             </group>
