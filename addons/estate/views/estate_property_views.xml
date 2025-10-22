@@ -53,7 +53,7 @@
                     </group>
                     <div class="row px-3 mb-3">
                         <div class="col-md-6">
-                            <field name="tags_ids" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
                         </div>
                     </div>
                     <group class="px-3 mb-4">
@@ -200,12 +200,22 @@
                                     </div>
                                 </div>
                             </group>
+                            <group class="px-3">
+                                <div class="row mb-0">
+                                    <div class="col-2">
+                                        <label for="total_area" string="Total Area (sqm)" class="o_form_label fw-bold"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <field name="total_area"/>
+                                    </div>
+                                </div>
+                            </group>
                         </page>
                         <page string="Offers">
                             <group class="px-3">
                                 <div class="row mb-0">
                                     <div class="col-auto">
-                                        <field name="offers_ids" widget="one2many"/>
+                                        <field name="offer_ids" widget="one2many"/>
                                     </div>
                                 </div>
                             </group>
