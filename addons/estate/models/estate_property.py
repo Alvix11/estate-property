@@ -2,7 +2,7 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class EstateProperty(models.Model):
@@ -70,3 +70,10 @@ class EstateProperty(models.Model):
         "property_id",
         string="Property Offers"
     )
+    total_area = fields.Char(compute="_compute_total_area")
+    
+    @api.depends("living_area", "garden_area")
+    def _compute_total_area(self):
+        for record in self:
+            total = record.living_area + record.garden_area
+            record.total_area = total
