@@ -200,10 +200,10 @@
                             <group class="px-3">
                                 <div class="row mb-0">
                                     <div class="col-2">
-                                        <label for="user_id" string="Salesman" class="o_form_label"/>
+                                        <label for="salesman_id" string="Salesman" class="o_form_label"/>
                                     </div>
                                     <div class="col-4">
-                                        <field name="user_id"/>
+                                        <field name="salesman_id"/>
                                     </div>
                                 </div>
                             </group>
