@@ -49,7 +49,7 @@ class EstateProperty(models.Model):
         "estate.property.type", 
         string="Property types"
     )
-    user_id = fields.Many2one(
+    salesman_id = fields.Many2one(
         "res.users",
         string="Salesperson",
         index=True,
