@@ -13,6 +13,9 @@ class EstatePropertyOffer(models.Model):
         ],
         copy=False
     )
+    validity = fields.Integer(default=7)
+    date_deadline = fields.Date()
+    
     partner_id = fields.Many2one(
         "res.partner",
         string="Partner",
@@ -23,3 +26,4 @@ class EstatePropertyOffer(models.Model):
         string="Property",
         required=True
     )
+    
