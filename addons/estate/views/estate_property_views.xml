@@ -45,6 +45,10 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="Estate Property">
+                <header>
+                    <button string="Sold" name="action_set_sold" type="object" class="oe_highlight"/>
+                    <button string="Cancel" name="action_set_cancelled" type="object" class="oe_highlight"/>
+                </header>
                 <sheet>
                     <group class="px-3">
                         <div class="display-5 mt-1 col-6">
@@ -57,6 +61,26 @@
                         </div>
                     </div>
                     <group class="px-3 mb-4">
+                        <group class="px-3">
+                            <div class="row mb-0">
+                                <div class="col-4">
+                                    <label for="state" string="Status" class="o_form_label"/>
+                                </div>
+                                <div class="col-4">
+                                    <field name="state"/>
+                                </div>
+                            </div>
+                        </group>
+                        <group>
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="expected_price" string="Expected Price" class="o_form_label fw-bold"/>
+                                </div>
+                                <div class="col-6">
+                                    <field name="expected_price" nolabel="1"/>
+                                </div>
+                            </div>
+                        </group>
                         <group>
                             <div class="row mb-0">
                                 <div class="col-4">
@@ -70,10 +94,10 @@
                         <group>
                             <div class="row">
                                 <div class="col-3">
-                                    <label for="expected_price" string="Expected Price" class="o_form_label fw-bold"/>
+                                    <label for="selling_price" string="Selling Price" class="o_form_label fw-bold"/>
                                 </div>
-                                <div class="col-6">
-                                    <field name="expected_price" nolabel="1"/>
+                                <div class="col-5">
+                                    <field name="selling_price" nolabel="1"/>
                                 </div>
                             </div>
                         </group>
@@ -104,16 +128,6 @@
                                 </div>
                                 <div class="col-5">
                                     <field name="date_availability" nolabel="1"/>
-                                </div>
-                            </div>
-                        </group>
-                        <group>
-                            <div class="row">
-                                <div class="col-3">
-                                    <label for="selling_price" string="Selling Price" class="o_form_label fw-bold"/>
-                                </div>
-                                <div class="col-5">
-                                    <field name="selling_price" nolabel="1"/>
                                 </div>
                             </div>
                         </group>
@@ -197,16 +211,6 @@
                                     </div>
                                     <div class="col-4">
                                         <field name="garden_orientation"/>
-                                    </div>
-                                </div>
-                            </group>
-                            <group class="px-3">
-                                <div class="row mb-0">
-                                    <div class="col-2">
-                                        <label for="state" string="State" class="o_form_label"/>
-                                    </div>
-                                    <div class="col-4">
-                                        <field name="state"/>
                                     </div>
                                 </div>
                             </group>
