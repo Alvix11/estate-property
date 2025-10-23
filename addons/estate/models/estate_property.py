@@ -3,6 +3,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class EstateProperty(models.Model):
@@ -59,7 +60,7 @@ class EstateProperty(models.Model):
                 [offer.price for offer in record.offer_ids], default=0.0
             )
             # record.best_offer = max(record.offer_ids.mapped("price"))
-    
+
     @api.onchange("garden")
     def _onchange_garden(self):
         if self.garden:
@@ -68,6 +69,28 @@ class EstateProperty(models.Model):
         else:
             self.garden_area = 0
             self.garden_orientation = False
+
+    def action_set_sold(self):
+        if self.state == "cancelled":
+            raise UserError(
+                "You cannot mark the property as sold if it is cancelled."
+            )
+        self.state = "sold"
+        
+        return {
+            "effect": {
+                "fadeout": "slow",
+                "message": "¡Property sold successfully!",
+                "type": "rainbow_man",
+            }
+        }
+
+    def action_set_cancelled(self):
+        if self.state == "sold":
+            raise UserError(
+                "You cannot mark the property as cancelled if it is sold."
+            )
+        self.state = "cancelled"
 
     property_type_id = fields.Many2one("estate.property.type", string="Property types")
     salesman_id = fields.Many2one(
