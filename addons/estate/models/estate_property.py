@@ -13,8 +13,7 @@ class EstateProperty(models.Model):
     description = fields.Text()
     post_code = fields.Char()
     date_availability = fields.Date(
-        copy=False, 
-        default=lambda self: datetime.today() + relativedelta(months=3)
+        copy=False, default=lambda self: datetime.today() + relativedelta(months=3)
     )
     expected_price = fields.Float(required=True)
     selling_price = fields.Float(readonly=True, copy=False)
@@ -45,35 +44,31 @@ class EstateProperty(models.Model):
         default="new",
     )
     active = fields.Boolean(default=True)
-    property_type_id = fields.Many2one(
-        "estate.property.type", 
-        string="Property types"
-    )
+    total_area = fields.Char(compute="_compute_total_area")
+    best_offer = fields.Float(compute="_compute_best_price")
+
+    @api.depends("living_area", "garden_area")
+    def _compute_total_area(self):
+        for record in self:
+            record.total_area = record.living_area + record.garden_area
+
+    @api.depends("offer_ids.price")
+    def _compute_best_price(self):
+        for record in self:
+            record.best_offer = max(
+                [offer.price for offer in record.offer_ids], default=0.0
+            )
+            # record.best_offer = max(record.offer_ids.mapped("price"))
+
+    property_type_id = fields.Many2one("estate.property.type", string="Property types")
     salesman_id = fields.Many2one(
         "res.users",
         string="Salesperson",
         index=True,
         default=lambda self: self.env.user,
     )
-    buyer_id = fields.Many2one(
-        "res.partner",
-        string="Buyer",
-        index=True,
-        copy=False
-    )
-    tag_ids = fields.Many2many(
-        "estate.property.tag",
-        string="Property Tags"
-    )
+    buyer_id = fields.Many2one("res.partner", string="Buyer", index=True, copy=False)
+    tag_ids = fields.Many2many("estate.property.tag", string="Property Tags")
     offer_ids = fields.One2many(
-        "estate.property.offer",
-        "property_id",
-        string="Property Offers"
+        "estate.property.offer", "property_id", string="Property Offers"
     )
-    total_area = fields.Char(compute="_compute_total_area")
-    
-    @api.depends("living_area", "garden_area")
-    def _compute_total_area(self):
-        for record in self:
-            record.total_area = record.living_area + record.garden_area
-            
