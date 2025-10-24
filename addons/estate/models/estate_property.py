@@ -4,16 +4,23 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.float_utils import float_compare
 
 
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Estate Property"
     _sql_constraints = [
-        ("check_expected_price", "CHECK(expected_price > 0)",
-        "The expected price must be strictly positive."),
-        ("check_selling_price", "CHECK(selling_price >= 0)",
-        "The selling price must be strictly positive."),
+        (
+            "check_expected_price",
+            "CHECK(expected_price > 0)",
+            "The expected price must be strictly positive.",
+        ),
+        (
+            "check_selling_price",
+            "CHECK(selling_price >= 0)",
+            "The selling price must be strictly positive.",
+        ),
     ]
 
     name = fields.Char(required=True)
@@ -76,13 +83,26 @@ class EstateProperty(models.Model):
             self.garden_area = 0
             self.garden_orientation = False
 
+    @api.constrains("expected_price", "selling_price")
+    def _check_selling_price(self):
+        for record in self:
+            if record.selling_price:
+                ninety_percent = record.expected_price * 0.9
+                result = float_compare(
+                    record.selling_price, ninety_percent, precision_digits=2
+                )
+                message = (
+                    "The sale price must be at least 90%. You must"
+                    "reduce the expected price to accept this offer."
+                    )
+                if result == -1:
+                    raise UserError(message)
+
     def action_set_sold(self):
         if self.state == "cancelled":
-            raise UserError(
-                "You cannot mark the property as sold if it is cancelled."
-            )
+            raise UserError("You cannot mark the property as sold if it is cancelled.")
         self.state = "sold"
-        
+
         return {
             "effect": {
                 "fadeout": "slow",
@@ -93,9 +113,7 @@ class EstateProperty(models.Model):
 
     def action_set_cancelled(self):
         if self.state == "sold":
-            raise UserError(
-                "You cannot mark the property as cancelled if it is sold."
-            )
+            raise UserError("You cannot mark the property as cancelled if it is sold.")
         self.state = "cancelled"
 
     property_type_id = fields.Many2one("estate.property.type", string="Property types")
