@@ -1,12 +1,13 @@
 import datetime
 
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "Property Offer"
-
+    
     price = fields.Float()
     status = fields.Selection(
         selection=[
@@ -19,14 +20,27 @@ class EstatePropertyOffer(models.Model):
     date_deadline = fields.Date(
         compute="_compute_date_deadline", inverse="_inverse_date_deadline"
     )
-
+    
+    def action_set_status_accepted(self):
+        if self.property_id.selling_price != 0:
+            raise UserError("To accept this offer, you must refuse the other one.")
+        
+        self.property_id.selling_price = self.price
+        self.property_id.buyer_id = self.partner_id
+        self.status = "accepted"
+    
+    def action_set_status_refused(self):
+        self.property_id.selling_price = 0
+        self.property_id.buyer_id = False
+        self.status = "refused"
+    
     @api.depends("validity")
     def _compute_date_deadline(self):
         for record in self:
             start_dt = record.create_date or fields.Datetime.now()
             date_deadline = start_dt + datetime.timedelta(days=record.validity or 0)
             record.date_deadline = date_deadline.date()
-
+    
     def _inverse_date_deadline(self):
         for record in self:
             if record.date_deadline:
