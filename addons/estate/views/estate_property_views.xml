@@ -94,10 +94,10 @@
                         <group>
                             <div class="row">
                                 <div class="col-3">
-                                    <label for="selling_price" string="Selling Price" class="o_form_label fw-bold"/>
+                                    <label for="best_offer" string="Best Offer" class="o_form_label"/>
                                 </div>
                                 <div class="col-5">
-                                    <field name="selling_price" nolabel="1"/>
+                                    <field name="best_offer" />
                                 </div>
                             </div>
                         </group>
@@ -114,10 +114,10 @@
                         <group>
                             <div class="row">
                                 <div class="col-3">
-                                    <label for="best_offer" string="Best Offer" class="o_form_label"/>
+                                    <label for="selling_price" string="Selling Price" class="o_form_label fw-bold"/>
                                 </div>
                                 <div class="col-5">
-                                    <field name="best_offer" />
+                                    <field name="selling_price" nolabel="1"/>
                                 </div>
                             </div>
                         </group>
