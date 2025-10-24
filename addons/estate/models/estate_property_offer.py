@@ -30,7 +30,11 @@ class EstatePropertyOffer(models.Model):
 
     def action_set_status_accepted(self):
         self.ensure_one()
-        if self.property_id.selling_price != 0:
+        if self.property_id and self.property_id.selling_price == self.price:
+            self.status = "accepted"
+            return
+        
+        if self.property_id.selling_price:
             raise UserError("To accept this offer, you must refuse the other one.")
         
         self.property_id.write(
