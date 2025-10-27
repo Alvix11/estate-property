@@ -30,12 +30,13 @@
         <field name="arch" type="xml">
             <list string="Channel">
                 <field name="name"/>
+                <field name="property_type_id" />
                 <field name="post_code"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
                 <field name="expected_price"/>
                 <field name="selling_price"/>
-                <field name="date_availability"/>
+                <field name="date_availability" optional="hide"/>
             </list>
         </field>
     </record>
