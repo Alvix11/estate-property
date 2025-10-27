@@ -28,10 +28,11 @@
         <field name="name">estate.property.list</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <list string="Channel">
+            <list string="Channel" decoration-bf="state=='offer accepted'" decoration-success="state=='offer accepted' or offer_ids" decoration-muted="state=='sold'">
                 <field name="name"/>
                 <field name="property_type_id" />
                 <field name="post_code"/>
+                <field name="tag_ids" widget="many2many_tags"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
                 <field name="expected_price"/>
