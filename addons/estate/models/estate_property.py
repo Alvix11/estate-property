@@ -10,6 +10,7 @@ from odoo.tools.float_utils import float_compare
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Estate Property"
+    _order = "id desc"
     _sql_constraints = [
         (
             "check_expected_price",
