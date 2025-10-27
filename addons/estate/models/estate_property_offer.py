@@ -40,7 +40,8 @@ class EstatePropertyOffer(models.Model):
         self.property_id.write(
                 {
                     "selling_price": self.price,
-                    "buyer_id": self.partner_id
+                    "buyer_id": self.partner_id,
+                    "state": "offer accepted"
                 }
         )
         self.status = "accepted"
