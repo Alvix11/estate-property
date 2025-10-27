@@ -191,7 +191,7 @@
                                         <label for="garden_area" string="Garden Area (sqm)" class="o_form_label"/>
                                     </div>
                                     <div class="col-4">
-                                        <field name="garden_area"/>
+                                        <field name="garden_area" invisible="garden != True"/>
                                     </div>
                                 </div>
                             </group>
@@ -201,7 +201,7 @@
                                         <label for="garden_orientation" string="Garden Orientation" class="o_form_label"/>
                                     </div>
                                     <div class="col-4">
-                                        <field name="garden_orientation"/>
+                                        <field name="garden_orientation" invisible="garden != True"/>
                                     </div>
                                 </div>
                             </group>
