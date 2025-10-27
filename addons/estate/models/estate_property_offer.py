@@ -56,6 +56,7 @@ class EstatePropertyOffer(models.Model):
                 {
                     "selling_price": False,
                     "buyer_id": False,
+                    "state": "new"
                 }
             )
         self.status = "refused"
