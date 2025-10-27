@@ -220,7 +220,7 @@
                             <group class="px-3">
                                 <div class="row mb-0">
                                     <div class="col-auto">
-                                        <field name="offer_ids" widget="one2many"/>
+                                        <field name="offer_ids" readonly="state == 'sold' or state == 'offer accepted' or state == 'cancelled'" widget="one2many"/>
                                     </div>
                                 </div>
                             </group>
