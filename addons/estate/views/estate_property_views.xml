@@ -46,8 +46,8 @@
         <field name="arch" type="xml">
             <form string="Estate Property">
                 <header>
-                    <button string="Sold" name="action_set_sold" type="object" class="oe_highlight"/>
-                    <button string="Cancel" name="action_set_cancelled" type="object" class="oe_highlight"/>
+                    <button string="Sold" name="action_set_sold" type="object" invisible="state == 'sold' or state == 'cancelled'" class="oe_highlight"/>
+                    <button string="Cancel" name="action_set_cancelled" type="object" invisible="state == 'sold' or state == 'cancelled'" class="oe_highlight"/>
                     <field name="state" widget="statusbar" statusbar_visible="offer received,offer accepted,sold"/>
                 </header>
                 <sheet>
