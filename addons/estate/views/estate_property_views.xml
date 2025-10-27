@@ -58,7 +58,7 @@
                     </group>
                     <div class="row px-3 mb-3">
                         <div class="col-md-6">
-                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                         </div>
                     </div>
                     <group class="px-3 mb-4">
