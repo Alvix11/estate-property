@@ -28,7 +28,7 @@
         <field name="name">estate.property.list</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <list string="Channel" decoration-bf="state=='offer accepted'" decoration-success="state=='offer accepted' or offer_ids" decoration-muted="state=='sold'">
+            <list string="Channel" decoration-bf="state=='offer accepted' or state=='sold'" decoration-success="state=='offer accepted' or offer_ids" decoration-muted="state=='sold'">
                 <field name="name"/>
                 <field name="property_type_id" />
                 <field name="post_code"/>
