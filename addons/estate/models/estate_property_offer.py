@@ -34,16 +34,16 @@ class EstatePropertyOffer(models.Model):
         if self.property_id and self.property_id.selling_price == self.price:
             self.status = "accepted"
             return
-        
+
         if self.property_id.selling_price:
             raise UserError("To accept this offer, you must refuse the other one.")
-        
+
         self.property_id.write(
-                {
-                    "selling_price": self.price,
-                    "buyer_id": self.partner_id,
-                    "state": "offer accepted"
-                }
+            {
+                "selling_price": self.price,
+                "buyer_id": self.partner_id,
+                "state": "offer accepted",
+            }
         )
         self.status = "accepted"
 
@@ -53,11 +53,7 @@ class EstatePropertyOffer(models.Model):
             self.property_id and self.property_id.selling_price == self.price
         ):
             self.property_id.write(
-                {
-                    "selling_price": False,
-                    "buyer_id": False,
-                    "state": "new"
-                }
+                {"selling_price": False, "buyer_id": False, "state": "new"}
             )
         self.status = "refused"
 
@@ -66,12 +62,7 @@ class EstatePropertyOffer(models.Model):
         if self.status == "accepted" or (
             self.property_id and self.property_id.selling_price == self.price
         ):
-            self.property_id.write(
-                {
-                    "selling_price": False,
-                    "buyer_id": False
-                }
-            )
+            self.property_id.write({"selling_price": False, "buyer_id": False})
         return super().unlink()
 
     @api.depends("validity")
@@ -96,3 +87,7 @@ class EstatePropertyOffer(models.Model):
 
     partner_id = fields.Many2one("res.partner", string="Partner", required=True)
     property_id = fields.Many2one("estate.property", string="Property", required=True)
+    property_type_id = fields.Many2one(
+        "estate.property.type", string="Property Type", required=True,
+        related="property_id.property_type_id", store=True
+    )
