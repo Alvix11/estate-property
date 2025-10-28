@@ -98,6 +98,11 @@ class EstateProperty(models.Model):
                     )
                 if result == -1:
                     raise UserError(message)
+    
+    @api.ondelete(at_uninstall=False)
+    def _unlink_properties(self):
+        if self.state == "sold" or self.state == "cancelled":
+            raise UserError("You cannot delete property sold or cancelled")
 
     def action_set_sold(self):
         if self.state == "cancelled":
