@@ -65,6 +65,15 @@ class EstatePropertyOffer(models.Model):
             self.property_id.write({"selling_price": False, "buyer_id": False})
         return super().unlink()
 
+    @api.model
+    def create(self, vals):
+        property_id =  self.env["estate.property"].browse(vals["property_id"])
+        if property_id.offer_ids != 0:
+            property_id.state = "offer received"
+
+        return super().create(vals)
+
+
     @api.depends("validity")
     def _compute_date_deadline(self):
         for record in self:
@@ -91,3 +100,5 @@ class EstatePropertyOffer(models.Model):
         "estate.property.type", string="Property Type",
         related="property_id.property_type_id", store=True
     )
+
+    
