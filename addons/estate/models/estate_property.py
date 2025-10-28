@@ -20,7 +20,7 @@ class EstateProperty(models.Model):
         (
             "check_selling_price",
             "CHECK(selling_price >= 0)",
-            "The selling price must be strictly positive.",
+            "The selling price must be positive.",
         ),
     ]
 
