@@ -68,11 +68,10 @@ class EstatePropertyOffer(models.Model):
     @api.model
     def create(self, vals):
         property_id =  self.env["estate.property"].browse(vals["property_id"])
-        if property_id.offer_ids != 0:
+        if not property_id.offer_ids:
             property_id.state = "offer received"
-
+        
         return super().create(vals)
-
 
     @api.depends("validity")
     def _compute_date_deadline(self):
