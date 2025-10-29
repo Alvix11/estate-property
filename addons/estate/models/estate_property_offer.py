@@ -2,6 +2,7 @@ import datetime
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.float_utils import float_compare
 
 
 class EstatePropertyOffer(models.Model):
@@ -67,10 +68,25 @@ class EstatePropertyOffer(models.Model):
 
     @api.model
     def create(self, vals):
-        property_id =  self.env["estate.property"].browse(vals["property_id"])
+        property_id = self.env["estate.property"].browse(vals["property_id"])
         if not property_id.offer_ids:
             property_id.state = "offer received"
-        
+
+        if property_id.offer_ids:
+            offer_min = min(
+                [offer.price for offer in property_id.offer_ids], default=0.0
+            )
+
+            price = vals.get("price", 0.0)
+            result = float_compare(price, offer_min, precision_digits=2)
+
+            message = (
+                "You cannot create an offer with a price lower"
+                "than the lowest offer."
+                )
+            if result == -1:
+                raise UserError(message)
+
         return super().create(vals)
 
     @api.depends("validity")
@@ -96,8 +112,8 @@ class EstatePropertyOffer(models.Model):
     partner_id = fields.Many2one("res.partner", string="Partner", required=True)
     property_id = fields.Many2one("estate.property", string="Property", required=True)
     property_type_id = fields.Many2one(
-        "estate.property.type", string="Property Type",
-        related="property_id.property_type_id", store=True
+        "estate.property.type",
+        string="Property Type",
+        related="property_id.property_type_id",
+        store=True,
     )
-
-    
