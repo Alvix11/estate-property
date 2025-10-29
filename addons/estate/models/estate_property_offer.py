@@ -8,7 +8,7 @@ from odoo.tools.float_utils import float_compare
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "Property Offer"
-    _order = "price desc"
+    _order = "price asc"
     _sql_constraints = [
         (
             "check_price",
