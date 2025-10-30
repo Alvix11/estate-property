@@ -7,6 +7,6 @@ class EstateProperty(models.Model):
     
     def action_set_sold(self):
         if self.state != "offer accepted":
-            raise UserError("No puedes venderla si no has aceptado una oferta")
+            raise UserError("You cannot sell the property if you have not accepted an offer.")
         
         return super().action_set_sold()
