@@ -6,11 +6,6 @@
         <menuitem id="estate_advertisements_menu"
                 name="Advertisements"
                 parent="estate_root_menu"/>
-
-        <menuitem id="estate_report"
-                name="Report"
-                parent="estate_root_menu"
-                action="action_report_estate_property"/>
         
         <menuitem id="estate_property"
                 name="Estate Property"
