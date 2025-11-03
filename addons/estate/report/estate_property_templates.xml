@@ -10,20 +10,32 @@
                                 <span t-field="property.name"/>
                             </h2>
                             <div>
+                                <strong>Salesman: </strong>
+                                <span t-field="property.salesman_id"/>
+                            </div>
+                            <div>
                                 <strong>Expected Price: </strong>
                                 <span t-field="property.expected_price"/>
+                            </div>
+                            <div>
+                                <strong>Status: </strong>
+                                <span t-field="property.state"/>
                             </div>
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Offers</th>
+                                        <th class="pe-5">Offers</th>
+                                        <th class="ps-5">Partner</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <t t-set="offers" t-value="property.mapped('offer_ids')"/>
                                     <tr t-foreach="offers" t-as="offer">
-                                        <td>
+                                        <td class="pe-5 text-end">
                                             <span t-field="offer.price"/>
+                                        </td>
+                                        <td class="ps-5">
+                                            <span t-field="offer.partner_id"/>
                                         </td>
                                     </tr>
                                 </tbody>
