@@ -83,6 +83,11 @@
                 <header>
                     <button string="Sold" name="action_set_sold" type="object" invisible="state == 'sold' or state == 'cancelled'" class="oe_highlight"/>
                     <button string="Cancel" name="action_set_cancelled" type="object" invisible="state == 'sold' or state == 'cancelled'" class="oe_highlight"/>
+                    <button name="%(estate.action_report_estate_property)d"
+                                type="action"
+                                class="oe_stat_button border rounded shadow-sm"
+                                string="Print"
+                                icon="fa-print"/>
                     <field name="state" widget="statusbar" statusbar_visible="offer received,offer accepted,sold"/>
                 </header>
                 <sheet>
